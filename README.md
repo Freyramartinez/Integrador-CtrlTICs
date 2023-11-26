@@ -24,7 +24,7 @@ Descripción de Contenido:
 [ Mi Página Personal]()
 
 ## Marco Antonio Mendoza Calva
-[ Mi Página Personal](h#ps://marcoantoniommmmm.github.io/MARCOANTONIOMMMMMM.github.io/)
+[ Mi Página Personal](https://marcoantoniommmmm.github.io/MARCOANTONIOMMMMMM.github.io/)
 
 ## Gomez Mejia Eduardo  
 [ Mi Página Personal](https://gomezedu.github.io/EduardoGM.github.io/)
