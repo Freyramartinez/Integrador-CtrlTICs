@@ -8,6 +8,7 @@ Descripción de Contenido:
 
 - ** Codigo**: En la carpeta principal, se encuentran  los archivos Java correspondientes a los ejercicios del proyecto.
   
+
 - ** LaTeX**: En la carpeta "LaTeX" se encuentran los archivos relacionados con la documentación del proyecto usando LaTeX.
 
 
@@ -27,3 +28,6 @@ Descripción de Contenido:
 
 ## Gomez Mejia Eduardo  
 [ Mi Página Personal](https://gomezedu.github.io/EduardoGM.github.io/)
+=======
+- ** LaTeX**: En la carpeta "LaTeX" se encuentran los archivos relacionados con la documentación del proyecto usando LaTeX.
+
