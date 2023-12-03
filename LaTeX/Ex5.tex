@@ -5,13 +5,7 @@ D = \sum_{i=0}^{n-1} (B[i] \cdot 2^i)
 \end{equation} 
 En esta fórmula, cada dígito binario $B [i]$ se multiplica por la potencia correspondiente de la base binaria, que es 2. El exponente $i$ varía desde 0 hasta $n-1$, donde $n$ representa el número total de dígitos en la representación binaria. Al sumar estos productos, se obtiene el número decimal $D$, que es el resultado de la conversión. 
 \subsection{\textbf{Descripción del problema:}}
-\begin{enumerate}
-\item Tomar el número binario de $n$ bits como entrada.
-  \item Recorrer cada bit del número binario de izquierda a derecha.
-  \item Para cada bit, multiplicar su valor (0 o 1) por la potencia de 2 correspondiente a su posición.
-  \item Sumar todos los resultados de las multiplicaciones realizadas en el paso anterior.
-  \item El resultado obtenido es el equivalente en decimal del número binario de entrada.
-\end{enumerate}
+La conversión de binario a decimal se logra multiplicando cada bit por su potencia de 2 correspondiente y sumando estos productos. La fórmula fundamental es la suma ponderada de los bits.
 \subsection{\textbf{Definición de solución:}}
 La solución para convertir un número binario a decimal se basa en la siguiente fórmula:
 
