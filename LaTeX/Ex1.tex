@@ -1,164 +1,128 @@
 \section{Resolución Problema 1} 
-Para dar solución a este problema se utiliza  el método de las 6’D, que está compuesto de seis etapas, cada una de las cuales consta de una serie de pasos, descripción del
-problema, definición de solución, diseño de la solución,
-desarrollo de la solución, depuración y pruebas y
-documentación. \\
 
+\subsection{\textbf{Descripción del problema:}}
+En el contexto de geometría analítica, la tarea es obtener la ecuación de la recta que pasa por los puntos $A$ y $B$, así como determinar el ángulo interno $\alpha$ que se forma entre la recta y el eje horizontal. Por lo tanto la solución implica el uso de conceptos trigonométricos y algebraicos para abordar este problema geométrico de manera eficiente.
 
+\subsection{\textbf{Definición de solución:}}
+La solución propuesta emplea tres funciones matemáticas clave. Primero, se calcula la inclinación de la recta mediante la función \texttt{inclinación}, luego se determina la intersección en el eje $Y$ con la función \texttt{intersección}, y finalmente se calcula el ángulo interno $\alpha$ con la función \texttt{ángulo}. Estas funciones trabajan en conjunto para proporcionar la ecuación de la recta y el ángulo deseado.
 
-Este programa en Java resuelve dos problemas de geometría analítica. Primero, determina la ecuación de una recta que pasa por los puntos A y B usando el método:
-\[
-\text{ $y = mx + b$ }
-\]
- Luego, calcula el ángulo interno entre la recta y el eje horizontal utilizando el método de la tangente inversa  $"a "$ = arctan(m)".
-\subsection{\textbf{Descripcion del problema:}}
-\begin{itemize}
-
-    \item Dados 2 puntos A y B con coordenadas x1, y1 y x2, y2 respectivamente. Regresar la ecuación de la recta y el ángulo interno α que se forma entre el eje horizontal y la recta.
-    \end{itemize}
 \subsection{\textbf{Diseño de la solución:}}
-La solución implica calcular la pendiente de la recta que pasa por los puntos A y B y utilizarla para obtener la ecuación de la recta en la forma y = mx + b, donde m es la pendiente y b es la intersección en el eje y. Una vez obtenida la ecuación de la recta, se puede calcular el ángulo interno utilizando la función trigonométrica arcotangente.
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width = 6.5 cm]{LaTeX/latex-imagenes/grafica-rectapendiente.png}
-    \caption{Gráfica de dos puntos en la recta.}
-    \label{fig:GraficaEcuacionRecta}
-\end{figure} 
-\subsection{\textbf{\textit{Diseño de solución }}}
-\begin{itemize}
-  \item Calcular la pendiente (m) de la recta utilizando la fórmula:
+Para el diseño de la solución observamos en la ecuación de la recta, si dos puntos distintos $P(x_{1}, y_{1})$ y $Q(x_{2}, y_{2})$ se ubican en la curva $y=f(x)$, la pendiente de la recta secante que une los dos puntos es:
 \begin{equation}
-    m = (y2 - y1) / (x2 - x1)
+    m_{sec}=\frac{y_{2} - y_{1}}{x_{2} - x_{1}} = \frac{f_{(x2)} - f_{(x1)} }{x_{2} - x_{1}}/
+    \label{eqn:rectaPendiente}
 \end{equation}
-   
-  \item  Calcular el término independiente (b)  utilizando la fórmula 
- \begin{equation}
-     b = y1 - mx1.
-\end{equation}
-  \item Obtener la ecuación de la recta
-   \begin{equation}
-     y = mx + b.
-\end{equation}
-  \item Calcular el ángulo interno (a) utilizando la fórmula
-    \begin{equation}
-      a = tan^(-1)(m)
-    \end{equation}
-\end{itemize}
-Utilizando este método, puedes encontrar la ecuación de la recta a partir de dos puntos. Recuerda que si los dos puntos son idénticos la recta será una linea vertical
-\cite{rectaPendiente}
 
-\subsection{ \textbf{\textit{Diagrama de flujo }}}
+La forma punto-pendiente de la ecuación de la recta, con una coordenada especifica en el plano cartesiano se define como:
+\begin{equation}
+    b = y_{1} - m * x_{1}
+     \label{eqn:eqnRecta}
 
+\end{equation}
 \begin{figure}[H]
     \centering
-    \includegraphics[width=6cm]{LaTeX/latex-imagenes/Diagrama de flujo.png}
-    \caption{Diagrama de flujo usado para la solución del problema}
+    \includegraphics[width = 6 cm]{Latex-imágenes/GraficaEcuación.png}
+    \caption{Gráfica de la ecuación de la recta}
+    \label{fig:GraficaEcuacionRecta}
 \end{figure}
+
+Utilizando este método, es posible encontrar la ecuación de la recta a partir de dos puntos. Recordando que si los dos puntos son idénticos la recta será una linea vertical.
+
+El algoritmo de solución para encontrar la ecuación de la recta pendiente  (ec. \ref{eqn:rectaPendiente}) comienza solicitando al usuario dos puntos $P(x_{1}, y_{1})$ y $Q(x_{2}, y_{2})$.\\
+
+\centering
+\begin{figure}[H]
+    \centering
+    \includegraphics[width = 6 cm]{Latex-imágenes/Diagrama.png}
+    \caption{Diagrama de flujo usado.}
+\end{figure}
+
+
 \subsection{\textbf{Desarrollo de la solución:}}
-// Comienza solicitando al usuario dos puntos $A(x_{1}, y_{1})$ y $B(x_{2}, y_{2})$.
+En el primer fragmento, se solicitan las coordenadas de dos puntos, A y B, que se ingresan en formato (x, y). Las coordenadas se leen como cadenas para separar las componentes x e y. Finalmente, se cierra el objeto Scanner para liberar los recursos.
 
-\begin{lstlisting}[style=javaStyle]
-    Scanner sc = new Scanner(System.in);
-    // Solicita datos del primer punto
-    System.out.println("Ingresa la coordenada x1: ");
-    double x1 = sc.nextDouble();
-    System.out.println("Ingresa la coordenada y1: ");
-    double y1 = sc.nextDouble();
+\begin{javaCode}
+
+Scanner puntos = new Scanner (System.in);
         
-    // Solicita datos del segundo punto
-    System.out.println("Ingresa la coordenada x2: ");
-    double x2 = sc.nextDouble();
-    System.out.println("Ingresa la coordenada y2: ");
-    double y2 = sc.nextDouble();
-\end{lstlisting}
-//Se  calcula la diferencia entre coordenadas, con el fin de determinar la distancia o el desplazamiento entre dos puntos en un sistema de coordenadas.
-\begin{lstlisting}[style=javaStyle]
-    // Calcula la diferencia entre coordenadas
-    double dx = x2 - x1;
-    double dy = y2 - y1;
-        
-\end{lstlisting}
-//Calculamos la pendiente usando la  formula 
- $m = (y2-y1) / (x2-x1)$
-Una vez obtenida la pendiente, obtenemos la intersección con el eje "Y"
-\begin{lstlisting}[style=javaStyle]
-        // Calcula la pendiente y la intersección con el eje Y
-        double pendiente = dy / dx;
-        double interseccionY = y1 - pendiente * x1;
-        
-\end{lstlisting}
-    // Calcula el ángulo en radianes
-        
-\begin{lstlisting}[style=javaStyle]
-     double anguloR = Math.atan2(dy, dx);
-\end{lstlisting}
-    // Convierte el ánguloR a grados
-\begin{lstlisting}[style=javaStyle]
-    double anguloG = Math.toDegrees(anguloR);
-\end{lstlisting}
-    //Finalmente obtenemos como resultado la ecuación de la recta que pasa a través de dos puntos dados, A y B. 
-    Además del el ángulo interno formado entre el eje horizontal y la recta.
-\begin{lstlisting}[style=javaStyle]
+    //Solicitar puntos para la ecuacion de la recta  
+    System.out.println("""
+                        Ingresa las coordenadas del punto 1.
+                        seperadas por una coma (x,y):
+                           """);
     
-        // Imprime la ecuación y el ángulo interno
-        System.out.println("La ecuación de la recta es: y = " + pendiente + "x + " + interseccionY);
-        System.out.println("El ángulo interno entre la recta y el eje horizontal es: " + anguloG + " grados");
+    String[] punto1 =puntos.nextLine().split(",");
+        
+    System.out.println("""
+                        Ingresa las coordenadas del punto 1.
+                        seperadas por una coma (x,y):
+                        """);
+    
+    String[] punto2 =puntos.nextLine().split(",");
+        
+    //cerrar el escaneo
+    puntos.close();
+        
+\end{javaCode}
 
-\end{lstlisting}
+Las coordenadas separadas se convierten de cadenas a números enteros utilizando Integer.parseInt(). El método trim() se utiliza para eliminar cualquier espacio en blanco que pueda haber alrededor de las coordenadas.
 
-\subsection{\textbf{\textit{Código general}}}
-\begin{lstlisting}[style=javaStyle]
-package com.mycompany.proyecto;
-import java.util.Scanner;
-/**
- *
- * @author Frey
- */
-public class Angulo_y_Ecuacion {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        // Solicita datos del primer punto
-        System.out.println("Ingresa la coordenada x1: ");
-        double x1 = sc.nextDouble();
-        System.out.println("Ingresa la coordenada y1: ");
-        double y1 = sc.nextDouble();
-        
-        // Solicita datos del segundo punto
-        System.out.println("Ingresa la coordenada x2: ");
-        double x2 = sc.nextDouble();
-        System.out.println("Ingresa la coordenada y2: ");
-        double y2 = sc.nextDouble();
-        
-        // Calcula la diferencia entre coordenadas
-        double dx = x2 - x1;
-        double dy = y2 - y1;
-        
-        // Calcula la pendiente y la intersección con el eje y
-        double pendiente = dy / dx;
-        double interseccionY = y1 - pendiente * x1;
-        
-        // Calcula el ángulo en radianes
-        double anguloR = Math.atan2(dy, dx);
-        
-        // Convierte el ánguloR a grados
-        double anguloG = Math.toDegrees(anguloR);
-        
-        // Imprime la ecuación y el ángulo interno
-        System.out.println("La ecuación de la recta es: y = " + pendiente + "x + " + interseccionY);
-        System.out.println("El ángulo interno entre la recta y el eje horizontal es: " + anguloG + " grados");
-    }
-}
-\end{lstlisting}
+\begin{javaCode}
+    //Asignar valor de coordenadas a x,y para dos puntos
+    int x1= Integer.parseInt(punto1[0].trim());
+    int y1= Integer.parseInt(punto1[1].trim());
+       
+    int x2= Integer.parseInt(punto2[0].trim());
+    int y2= Integer.parseInt(punto2[1].trim());
+\end{javaCode}
 
+Aquí se calcula la pendiente ($m$) de la recta utilizando la fórmula
+\[
+m = \frac{{y_2 - y_1}}{{x_2 - x_1}}
+\]
+y luego se calcula la intersección en el eje $Y$ ($b$) utilizando la fórmula.(ec. \ref{eqn:eqnRecta})
+La ecuación de la recta resultante es\\ $y = mx + b$.
 
+\begin{javaCode}
+    //Calculo para la inclinacion de la recta  
+    Double m = (double)(y2 - y1)/(x2 - x1);
+       
+    //Calcular Interseccion de la recta
+    Double b= y1 -(m * x1);
+\end{javaCode}
+Se calcula el ángulo interno (\(\alpha\)) entre la recta y el eje horizontal utilizando la función \texttt{Math.atan(m)}. El resultado se convierte de radianes a grados.\\
+\begin{javaCode}
+    // Calcular el ángulo interno $\alpha$
+        Double alpha = Math.atan(m);
+        
+\end{javaCode}
+Finalmente, se imprime la ecuación de la recta y el ángulo interno en grados. La ecuación se imprime en formato \(mx + by\), y el ángulo se imprime en grados.
+\begin{javaCode}
+   //Imprimir ecuacion de la recta
+        
+        System.out.println("Ecuacion de la recta igual= \n" +
+                 m + " x + " + b + " y ");
+       //Imprimir el resultado de el ángulo interno 
+        System.out.println("El ángulo interno entre la recta y el eje horizontal es: " 
+                + String.format("%.3f", Math.toDegrees(alpha)) + " Grados");
+                
+\end{javaCode}
+La función String.format() formatea un número decimal según el formato especificado en la cadena de formato.(En este caso 3f es el formato que indica que el número debe redondearse a tres). decimales
 \subsection{\textbf{Depuración y pruebas:}}
-\begin{figure}[H]
+\begin{table}[ht]
     \centering
-    \includegraphics[width=8cm]{LaTeX/latex-imagenes/prueba de escritorio2.png}
-    \caption{Prueba de escritorio.}
-\end{figure}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=10cm]{LaTeX/latex-imagenes/TABLA.jpg}
-    \caption{Tabla de corridas.}
-\end{figure}
+    \begin{tabular}{|c|c|c|c|c|c|c|}
+        \hline
+        \textbf{Prueba} & \textbf{Punto 1} & \textbf{Punto 2} & \textbf{Pendiente (\(m\))} & \textbf{Intersección (\(b\))} & \textbf{Ángulo (\(\alpha\))} & \textbf{Ecuación de la Recta} \\
+        \hline
+        1 & (1, 2) & (3, 4) & 1.0 & 1.0 & 45.000 & \(y = x + 1\) \\
+        \hline
+        2 & (-1, 0) & (2, -3) & -1.0 & 1.0 & -45.000 & \(y = -x + 1\) \\
+        \hline
+        3 & (-4, 1) & (1, 4) & 0.6 & 3.4 & 30.964 & \(y = -x + 5\) \\
+        \hline
+        % Pruebas necesarias
+    \end{tabular}
+    \caption{Pruebas para el programa de ecuación de la recta}
+    \label{tab:pruebas}
+\end{table}

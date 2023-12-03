@@ -1,92 +1,107 @@
 \section{Resolución Problema 5}
-La conversión de números binarios a decimales es un proceso fundamental en el campo de la informática y las matemáticas. Para obtener la conversión de binario a decimal, se empleó la siguiente fórmula inicialmente:
-\begin{equation}
-D = \sum_{i=0}^{n-1} (B[i] \cdot 2^i) 
-\end{equation} 
-En esta fórmula, cada dígito binario $B [i]$ se multiplica por la potencia correspondiente de la base binaria, que es 2. El exponente $i$ varía desde 0 hasta $n-1$, donde $n$ representa el número total de dígitos en la representación binaria. Al sumar estos productos, se obtiene el número decimal $D$, que es el resultado de la conversión. 
+Dado un numero binario de $n$ bits regresa su equivalente a decimal.
+
+
 \subsection{\textbf{Descripción del problema:}}
+
 La conversión de binario a decimal se logra multiplicando cada bit por su potencia de 2 correspondiente y sumando estos productos. La fórmula fundamental es la suma ponderada de los bits.
+=======
+
+Se requiere convertir números binarios a su equivalente decimal.
+
 \subsection{\textbf{Definición de solución:}}
-La solución para convertir un número binario a decimal se basa en la siguiente fórmula:
+La solución para convertir un número binario de n bits a su equivalente en decimal consiste en recorrer cada bit del número binario, multiplicar su valor por 2 elevado a la potencia correspondiente según su posición, y sumar los resultados. Al finalizar el recorrido, el valor obtenido será el equivalente decimal del número binario. Es importante verificar la validez del número binario y asegurarse de que esté compuesto únicamente por 0 y 1. El resultado se muestra como el equivalente decimal del número binario.
 
-\begin{equation}
-D = \sum_{i=0}^{n-1} (B[i] \cdot 2^i)
-\end{equation}
 
-En esta fórmula, se multiplican los bits del número binario $B$ por las potencias correspondientes de 2, según su posición en la secuencia. Luego, se suman los productos obtenidos. El resultado de esta suma es el número decimal equivalente al número binario.
 \subsection{\textbf{Diseño de la solución:}}
-Seguidamente se muestra, un diagrama de flujo que fue de vital importancia para el desarrolo del programa en java:
-\begin{figure}[h!]
+El programa solicita al usuario que ingrese un número binario de n bits. Se asegura de que el número ingresado consista únicamente en dígitos binarios 0 y 1. Si se detecta algún dígito decimal, el programa no funcionará.
+
+Luego, se realiza la conversión del número binario ingresado a su equivalente decimal utilizando la fórmula de posición y peso explicada anteriormente.
+
+Finalmente, el programa imprime el resultado de la conversión, es decir, el número decimal equivalente al número binario ingresado por el usuario.
+
+
+\begin{figure}[H]
     \centering
-    \includegraphics[width = 7.5 cm]{LaTeX/latex-imagenes/fig.1.jpeg}
-    \caption{Diagrama de flujo.}
-    \label{fig:Diagrama de flujo que se uso para la creación del codigo en java.}
+    \includegraphics[width=6cm]{LaTeX/IMA/EL MERO MERO.png}
+    \caption{Diagrama de flujo usado como base .}
 \end{figure}
+
+
 \subsection{\textbf{Desarrollo de la solución:}}
-En esta sección se comienza solicitando al usuario que ingrese un número binario válido, compuesto únicamente por los dígitos 0 y 1.
+El desarrollo del código del programa en Java para la conversión de números binarios a decimales:
 
 \begin{lstlisting}[style=javaStyle]
-        Scanner sc = new Scanner(System.in);
-// Se le pide al usuario que ingrese un número binario.
-    System.out.println("Ingrese por favor el número binario (solo están permitidos 0 y 1): ");
-    String binario = sc.nextLine();
-  
+import java.util.Scanner;
+import java.math.BigInteger;
+
+public class NewClass {
+    public static void main(String[] args) {
+        Scanner bin = new Scanner(System.in);
+        boolean continuar = true;
 \end{lstlisting}
-Se llama a validarBin para verificar si el número binario ingresado es válido. Recorre cada dígito y verifica si es 0 o 1. Devuelve false si encuentra otro dígito, indicando que el número es inválido, y true si todos los dígitos son 0 o 1, continuando la ejecución.
-\begin{lstlisting}[style=javaStyle] 
-    
-// Condición para que solo se puedan agregar los caracteres 0 y 1.
-        if (!validarBin(binario)) 
-            System.out.println("Error: El número binario ingresado contiene dígitos no válidos.");
-            return;
-     
+En esta paso en el programa son colocadas las variables $Scanner$ $BigInteger$
+las cuales ayudaran al correr el programa
+
+Se solicita al usuario ingresar un numero binario
+\begin{lstlisting}[style=javaStyle]
+// Bucle que permite al usuario ingresar números binarios hasta que ingrese 'x'
+
+        while (continuar) {
+        
+            System.out.print("Ingrese un número en binario (o 'x' para terminar ): ")
+            
+            String entrada = bin.nextLine();
 \end{lstlisting}
 
-Después de la validación, se llama a convertirBin para convertir el número binario a decimal. Esta función toma el número binario como entrada y devuelve su equivalente en decimal.
-\begin{lstlisting}[style=javaStyle] 
-    int decimal = convertirBin(binario);
-    System.out.println("La conversión a número decimal es: " + decimal);
-\end{lstlisting}
-Se llama al método convertirBin() pasando el número binario como argumento. Este método realiza la conversión del número binario a decimal utilizando un bucle.
-\begin{lstlisting} [style=javaStyle] 
-    for (int i = 0; i < longitud; i++) {
-        char digito = binario.charAt(i);
-        int valor = Character.getNumericValue(digito);
-        decimal += valor * Math.pow(2, exponente);
-        exponente--;
-    }
+ La variable $while$ es utilizada como un "mientras" esta mantiene un bucle regresando a pedirnos un numero binario para su conversión a binario
 
-    return decimal;
+\begin{lstlisting}[style=javaStyle]
+                 // Si se ingresa 'x', el bucle se detiene;
+            if (entrada.equalsIgnoreCase("x")) {
+                continuar = false;
+                continue;
+            }
+\end{lstlisting}
+
+En esta línea, se declara una variable llamada decimal del tipo BigInteger. Se utiliza para almacenar el valor decimal resultante después de convertir el número binario ingresado. La función convertirBinarioADecimal se llama con el argumento entrada, que es el número binario ingresado por el usuario.
+
+\begin{lstlisting}[style=javaStyle]
+ // llama al método convertirBinarioADecimal para convertir el número binario ingresado a decimal
+ 
+            BigInteger decimal = convertirBinarioADecimal(entrada);
+            
+\end{lstlisting}
+
+ Esta línea imprime en la consola el mensaje "El número en decimal es: " seguido del valor almacenado en la variable decimal. Es decir, muestra el resultado de la conversión en formato decimal.
+
+\begin{lstlisting}[style=javaStyle]
+System.out.println("El número en decimal es: " + decimal);
 
 \end{lstlisting}
-Se define un método llamado validarBin que se utiliza para validar si un número binario solo contiene los caracteres '0' y '1'.  El método se utiliza para validar si un número binario es válido antes de realizar la conversión a decimal.
-\begin{lstlisting} [style=javaStyle] 
-}
 
-// Metodo para validar si un número binario solo contiene los caracteres 0 y 1.
-public static boolean validarBin(String binario) {
-    for (int i = 0; i < binario.length(); i++) {
-        char digito = binario.charAt(i);
-        if (digito != '0' && digito != '1') {
-            return false;
-        }
-    }
-    return true;
-  }
-}
+Estas líneas definen el método convertirBinarioADecimal, que toma un argumento de tipo String llamado binario. El método crea un nuevo objeto BigInteger utilizando el constructor que toma dos argumentos: el número binario (binario) y la base (2) que se utiliza para interpretar el número binario y convertirlo a decimal. 
+
+\begin{lstlisting}[style=javaStyle]
+lic static BigInteger convertirBinarioADecimal(String binario) {
+        return new BigInteger(binario, 2);
+
 \end{lstlisting}
+
+\text La fórmula se basa en el hecho de que cada posición en un número binario representa una potencia de 2. El dígito en la posición más a la derecha tiene un peso de \(2^0\), el siguiente dígito tiene un peso de \(2^1\), el siguiente tiene un peso de \(2^2\), y así sucesivamente.
+\space
+
+\begin{equation}
+
+M = D0 * 2^0 + D1 * 2^1 + D2 * 2^2
+
+\end{equation}
+
 
 \subsection{\textbf{Depuración y pruebas:}}
-\begin{figure}[h!]
+En esta tabla se dasarrollan una seria de pruebas, 
+\begin{figure}[H]
     \centering
-    \includegraphics[width = 7.5 cm]{LaTeX/latex-imagenes/fig.2.jpeg}
-    \caption{Depuración del código en java del programa binario a decimal.}
-    \label{fig:DepuraciónCodigo}
-\end{figure}
-
-\begin{figure}[h!]
-    \centering
-    \includegraphics[width = 7.5 cm]{LaTeX/latex-imagenes/fig.3.jpeg}
-    \caption{Tabla de conversión de numero binaria a decimlal.}
-    \label{fig:DepuraciónCodigo}
+    \includegraphics[width=10cm]{IMA/TABLA LA REAL.png}
+    \caption{Prueba de escritorio.}
 \end{figure}
